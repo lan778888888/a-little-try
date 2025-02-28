@@ -1,1 +1,73 @@
-who am i ?
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>近期新闻热点</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+      .news-item {
+            counter-increment: news-counter;
+            margin: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+      .news-item::before {
+            content: counter(news-counter) ".";
+            display: inline-block;
+            width: 20px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+      .news-summary {
+            font-weight: bold;
+        }
+
+      .news-details {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+      .news-item:hover>.news-details {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="news-item">
+        <div class="news-summary">科技公司发布新手机</div>
+        <div class="news-details">
+            <p>某知名科技公司于昨日正式发布了其最新款手机，这款手机在性能、拍照等方面都有显著提升...</p>
+        </div>
+    </div>
+    <div class="news-item">
+        <div class="news-summary">体育赛事决赛举行</div>
+        <div class="news-details">
+            <p>备受瞩目的体育赛事决赛于今日上午举行，两支强队展开了激烈角逐，最终主队以3:2的比分获
+                胜...</p>
+        </div>
+    </div>
+    <div class="news-item">
+        <div class="news-summary">文化展览盛大开幕</div>
+        <div class="news-details">
+            <p>一场大型文化展览在本市博物馆盛大开幕，展览汇聚了众多珍贵文物和艺术作品，吸引了大量
+                市民前往参观...</p>
+        </div>
+    </div>
+</body>
+
+</html>
