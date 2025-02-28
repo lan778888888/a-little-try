@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏人物介绍 - 杰洛特</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: red;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #character-intro {
+            padding: 20px;
+            text-align: center;
+        }
+
+        #character-intro img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #description {
+            padding: 20px;
+            margin-top: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 滑动动画效果 */
+       .slide-in {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+      .slide-in.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>《巫师》系列 - 杰洛特</h1>
+    </header>
+    <div id="character-intro">
+        <img src="https://i0.hdslb.com/bfs/new_dyn/aae447d40c97fb510ab274c9488013571340190821.png@1052w_!web-dynamic.avif" alt="杰洛特">
+        <h2>利维亚的杰洛特</h2>
+        <p>杰洛特是一名猎魔人，拥有超乎常人的力量、速度和感知能力。</p>
+    </div>
+    <div id="description" class="slide-in">
+        <p>杰洛特在充满魔法与怪物的世界中成长，自幼便接受严格的训练。他被注入了各种魔法药剂，这不仅赋予了他强大的能力，也改变了他的外貌，使他拥有了白色的头发。</p>
+        <p>作为猎魔人，杰洛特的主要职责是保护人类免受怪物的侵害。他凭借着精湛的剑术和丰富的怪物知识，在大陆上四处奔波，解决各种危险的任务。然而，他的生活并非一帆风顺，常常陷入复杂的政治阴谋和道德困境之中。</p>
+        <p>在冒险过程中，杰洛特结识了许多重要的人物，如吟游诗人丹德里恩、女术士叶奈法等。他们的陪伴和支持，对杰洛特的人生产生了深远的影响。</p>
+        <p>杰洛特性格沉稳、坚毅，但内心深处也有着温柔和善良的一面。面对道德的抉择，他总是努力做出正确的选择，即使这意味着要付出巨大的代价。</p>
+    </div>
+    <script>
+        window.addEventListener('load', function () {
+            const description = document.querySelector('#description');
+            description.classList.add('show');
+        });
+    </script>
+</body>
+
+</html>
