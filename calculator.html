@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单计算器</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        input[type="button"] {
+            width: 60px;
+            height: 60px;
+        }
+
+        input[type="text"] {
+            width: 270px;
+            height: 60px;
+            text-align: right;
+        }
+
+        input[value="清除"] {
+            width: 270px;
+            height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td colspan="4"><input type="text" id="result" readonly></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="appendToResult('7')"></td>
+            <td><input type="button" value="8" onclick="appendToResult('8')"></td>
+            <td><input type="button" value="9" onclick="appendToResult('9')"></td>
+            <td><input type="button" value="➗" onclick="appendToResult('/')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="appendToResult('4')"></td>
+            <td><input type="button" value="5" onclick="appendToResult('5')"></td>
+            <td><input type="button" value="6" onclick="appendToResult('6')"></td>
+            <td><input type="button" value="*" onclick="appendToResult('*')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="appendToResult('1')"></td>
+            <td><input type="button" value="2" onclick="appendToResult('2')"></td>
+            <td><input type="button" value="3" onclick="appendToResult('3')"></td>
+            <td><input type="button" value="-" onclick="appendToResult('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" onclick="appendToResult('0')"></td>
+            <td><input type="button" value="." onclick="appendToResult('.')"></td>
+            <td><input type="button" value="=" onclick="calculateResult()"></td>
+            <td><input type="button" value="+" onclick="appendToResult('+')"></td>
+        </tr>
+        <tr>
+            <td colspan="4"><input type="button" value="清除" onclick="clearResult()"></td>
+        </tr>
+    </table>
+
+    <script>
+        function appendToResult(value) {
+            document.getElementById('result').value += value;
+        }
+
+        function clearResult() {
+            document.getElementById('result').value = '';
+        }
+
+        function calculateResult() {
+            try {
+                document.getElementById('result').value = eval(document.getElementById('result').value);
+            } catch (error) {
+                document.getElementById('result').value = '错误';
+            }
+        }
+    </script>
+</body>
+
+</html>    
