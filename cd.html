@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小星星音乐播放器</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .player {
+            text-align: center;
+        }
+
+        .cd {
+            width: 200px;
+            height: 200px;
+            background-image: url('your_cd_cover.jpg');
+            background-size: cover;
+            border-radius: 50%;
+            margin: 20px auto;
+            animation: rotate 10s linear infinite paused;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .lyrics {
+            width: 300px;
+            height: 100px;
+            overflow: hidden;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .lyrics p {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            animation: slide 20s linear infinite paused;
+        }
+
+        @keyframes slide {
+            from {
+                top: 100%;
+            }
+
+            to {
+                top: -100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player">
+        <div class="cd"></div>
+        <button id="play-pause">播放</button>
+        <audio id="audio" src="your_music.mp3">
+            你的浏览器不支持音频播放。
+        </audio>
+        <div class="lyrics">
+            <p>
+                一闪一闪亮晶晶<br>
+                满天都是小星星<br>
+                挂在天空放光明<br>
+                好像千万小眼睛<br>
+                一闪一闪亮晶晶<br>
+                满天都是小星星
+            </p>
+        </div>
+    </div>
+    <script>
+        const audio = document.getElementById('audio');
+        const playPauseButton = document.getElementById('play-pause');
+        const cd = document.querySelector('.cd');
+        const lyrics = document.querySelector('.lyrics p');
+
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = '暂停';
+                cd.style.animationPlayState = 'running';
+                lyrics.style.animationPlayState = 'running';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = '播放';
+                cd.style.animationPlayState = 'paused';
+                lyrics.style.animationPlayState = 'paused';
+            }
+        });
+    </script>
+</body>
+
+</html>    
