@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频与代码展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .video-container {
+            flex: 1;
+            min-width: 300px;
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        video {
+            width: 100%;
+            display: block;
+            max-height: 600px;
+            object-fit: contain;
+        }
+        
+        .code-container {
+            flex: 1;
+            min-width: 300px;
+            background-color: #282c34;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .code-header {
+            background-color: #21252b;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .code-content {
+            height: 600px;
+            overflow-y: auto;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            color: #abb2bf;
+        }
+        
+        pre {
+            margin: 0;
+            overflow: hidden;
+            white-space: pre-wrap;
+        }
+        
+        code {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            video, .code-content {
+                height: auto;
+                max-height: 400px;
+            }
+        }
+        
+        /* 代码高亮样式 */
+        .keyword { color: #c678dd; }
+        .string { color: #98c379; }
+        .comment { color: #5c6370; }
+        .function { color: #61afef; }
+        .number { color: #d19a66; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>视频与代码展示</h1>
+            <p class="description">这是一个展示视频和对应代码的页面，视频可以播放，代码部分可以滑动查看。</p>
+        </header>
+        
+        <div class="content">
+            <div class="video-container">
+                <video controls>
+                    <!-- 替换下面的src为你自己的视频文件路径 -->
+                    <source src="guocheng.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频。
+                </video>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">代码示例 (Python)</div>
+                <div class="code-content">
+                    <pre><code><span class="comment"># 这是一个示例代码，用于演示视频中的功能</span>
+<span class="comment">import mido
+from mido import Message, MidiFile, MidiTrack
+
+# 定义《小星星》的音符（音高）
+notes = [60, 60, 67, 67, 69, 69, 67,
+         65, 65, 64, 64, 62, 62, 60]
+
+# 将音符延长，后半段降调
+lowered_notes = [note - 2 for note in notes]  # 降调两个音阶
+extended_notes = notes + lowered_notes  # 组合前半段和后半段
+durations = [400] * len(extended_notes)  # 更新持续时间
+
+# 定义打击乐音符（音高）
+percussion_notes = [35, 38, 42]  # 大鼓、小鼓、踩镲
+percussion_durations = [200, 200, 200]  # 持续时间
+
+# 创建一个新的 MIDI 文件和轨道
+mid = MidiFile()
+track = MidiTrack()
+mid.tracks.append(track)
+
+# 设置乐器（钢琴）
+track.append(Message('program_change', program=0, time=0))
+
+# 生成 MIDI 消息
+time = 0
+for note, duration in zip(extended_notes, durations):
+    track.append(Message('note_on', note=note, velocity=64, time=time))
+    track.append(Message('note_off', note=note, velocity=64, time=duration))
+    time = 0
+
+# 添加打击乐音符
+for percussion_note, percussion_duration in zip(percussion_notes, percussion_durations):
+    track.append(Message('note_on', note=percussion_note, velocity=64, time=0))
+    track.append(Message('note_off', note=percussion_note, velocity=64, time=percussion_duration))
+
+# 创建一个新的音轨用于伴奏
+accompaniment_track = MidiTrack()
+mid.tracks.append(accompaniment_track)
+
+# 定义伴奏和弦（音高）
+chords = [
+    [60, 64, 67],  # C 大调和弦
+    [62, 65, 69],  # D 小调和弦
+    [64, 67, 71],  # E 小调和弦
+    [65, 69, 72],  # F 大调和弦
+]
+
+# 定义伴奏的持续时间
+accompaniment_durations = [800] * len(chords)  # 每个和弦持续时间
+
+# 添加伴奏和弦到伴奏音轨
+for chord, duration in zip(chords, accompaniment_durations):
+    for note in chord:
+        accompaniment_track.append(Message('note_on', note=note, velocity=64, time=0))
+    for note in chord:
+        accompaniment_track.append(Message('note_off', note=note, velocity=64, time=duration))
+
+# 保存 MIDI 文件
+mid.save('twinkle_twinkle.mid')    </span>
+
+<span class="keyword">def</span> <span class="function">process_video</span>(<span class="keyword">input_file</span>, <span class="keyword">output_file</span>):
+    <span class="comment"># 读取视频文件</span>
+    <span class="keyword">video</span> = cv2.VideoCapture(<span class="string">"input_file"</span>)
+    
+    <span class="comment"># 获取视频属性</span>
+    <span class="keyword">fps</span> = video.get(cv2.CAP_PROP_FPS)
+    <span class="keyword">width</span> = <span class="keyword">int</span>(video.get(cv2.CAP_PROP_FRAME_WIDTH))
+    <span class="keyword">height</span> = <span class="keyword">int</span>(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    
+    <span class="comment"># 创建输出视频写入器</span>
+    <span class="keyword">fourcc</span> = cv2.VideoWriter_fourcc(*<span class="string">'mp4v'</span>)
+    <span class="keyword">out</span> = cv2.VideoWriter(<span class="string">"output_file"</span>, fourcc, fps, (<span class="keyword">width</span>, <span class="keyword">height</span>))
+    
+    <span class="comment"># 逐帧处理视频</span>
+    <span class="keyword">while</span> video.isOpened():
+        <span class="keyword">ret</span>, frame = video.read()
+        <span class="keyword">if</span> <span class="keyword">not</span> ret:
+            <span class="keyword">break</span>
+        
+        <span class="comment"># 在这里添加你的视频处理逻辑</span>
+        <span class="keyword">processed_frame</span> = process_frame(frame)
+        
+        <span class="comment"># 写入处理后的帧</span>
+        out.write(processed_frame)
+    
+    <span class="comment"># 释放资源</span>
+    video.release()
+    out.release()
+    
+<span class="keyword">def</span> <span class="function">process_frame</span>(frame):
+    <span class="comment"># 示例：将帧转换为灰度图</span>
+    <span class="keyword">gray</span> = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    
+    <span class="comment"># 示例：应用高斯模糊</span>
+    <span class="keyword">blurred</span> = cv2.GaussianBlur(gray, (<span class="number">5</span>, <span class="number">5</span>), <span class="number">0</span>)
+    
+    <span class="comment"># 示例：应用边缘检测</span>
+    <span class="keyword">edges</span> = cv2.Canny(blurred, <span class="number">50</span>, <span class="number">150</span>)
+    
+    <span class="comment"># 返回处理后的帧</span>
+    <span class="keyword">return</span> edges
+
+<span class="comment"># 使用示例</span>
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    process_video(<span class="string">"input.mp4"</span>, <span class="string">"output.mp4"</span>)</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
