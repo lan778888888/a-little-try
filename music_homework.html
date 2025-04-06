@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>视频与代码展示</title>
+    <title>B站视频与代码展示</title>
     <style>
         * {
             margin: 0;
@@ -58,13 +58,14 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 600px;
         }
         
-        video {
+        .bilibili-iframe {
             width: 100%;
+            height: 100%;
+            border: none;
             display: block;
-            max-height: 600px;
-            object-fit: contain;
         }
         
         .code-container {
@@ -109,7 +110,7 @@
                 flex-direction: column;
             }
             
-            video, .code-content {
+            .video-container, .code-content {
                 height: auto;
                 max-height: 400px;
             }
@@ -126,17 +127,16 @@
 <body>
     <div class="container">
         <header>
-            <h1>视频与代码展示</h1>
-            <p class="description">这是一个展示视频和对应代码的页面，视频可以播放，代码部分可以滑动查看。</p>
+            <h1>B站视频与代码展示</h1>
+            <p class="description">这是一个展示B站视频和对应代码的页面，视频可以播放，代码部分可以滑动查看。</p>
         </header>
         
         <div class="content">
             <div class="video-container">
-                <video controls>
-                    <!-- 替换下面的src为你自己的视频文件路径 -->
-                    <source src="guocheng.mp4" type="video/mp4">
-                    您的浏览器不支持HTML5视频。
-                </video>
+                <!-- 嵌入B站视频 -->
+                <iframe class="bilibili-iframe" src="https://player.bilibili.com/player.html?bvid=YOUR_BVID&page=1" 
+                        scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
+                </iframe>
             </div>
             
             <div class="code-container">
